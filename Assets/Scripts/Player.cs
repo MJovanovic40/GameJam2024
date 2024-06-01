@@ -4,6 +4,16 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+
+    public enum PlayerState
+    {
+        Inactive, //pre nego sto se upali minigejm/dok je idle, ako treba
+        AtWork, //na poslu
+        AtExam, //na ispitu
+        Studying, //uci minigejm
+        InTown //u gradu se seta
+    }
+
     [SerializeField]
     private Rigidbody2D rb;
 
@@ -17,6 +27,11 @@ public class Player : MonoBehaviour
     private float money;
     [SerializeField]
     private int focus;
+
+    [SerializeField]
+    private PlayerState currentState = PlayerState.Inactive;
+
+    private bool hasGf;
 
     // Start is called before the first frame update
     void Start()
@@ -44,6 +59,20 @@ public class Player : MonoBehaviour
             health = Mathf.Clamp(value, 0, 100); 
         }
     }
+
+    public bool HasGf
+    {
+        get { return hasGf; }
+        set { hasGf = value; }
+    }
+
+    public PlayerState State
+    {
+        get { return currentState; }
+        set { currentState = value; }
+    }
+
+
     public int Stamina 
     { 
         get { return stamina; }

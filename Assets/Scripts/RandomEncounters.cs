@@ -7,23 +7,48 @@ using UnityEngine;
 
 public class RandomEncounters : MonoBehaviour
 {
-    private const float robOddStart = 0f, robOddEnd = 0.001f, breakupOddStart = 0.101f, breakupOddEnd = 0.109f, hookupOddStart = 0.22f, hookupOddEnd = 0.33f,
-        crashOddBegin = 0.40f, crashOddEnd = 0.4001f, powerOddStart = 0.55f, powerOddEnd = 0.555f, injuryOddStart = 0.801f, injuryOddEnd = 0.807f;
+    private const float robOddStart = 0f, robOddEnd = 0.091f, breakupOddStart = 0.101f, breakupOddEnd = 0.309f, hookupOddStart = 0.32f, hookupOddEnd = 0.53f,
+        crashOddStart = 0.60f, crashOddEnd = 0.65f, powerOddStart = 0.65f, powerOddEnd = 0.855f, injuryOddStart = 0.855f, injuryOddEnd = 1f;
 
-    public bool isWithin(float value,  float min, float max)
+    [SerializeField]
+    private Player player;
+
+    IEnumerator Loop()
     {
-        if (value.CompareTo(min) < 0)
-            return false;
-        if (value.CompareTo(max) > 0)
-            return false;
-        return true;
+        yield return new WaitForSeconds(5f);
+        float random = UnityEngine.Random.Range(0, 1);
+        switch(player.State)
+        {
+            case Player.PlayerState.AtExam: yield break;
+            case Player.PlayerState.Inactive: yield break;
+            case Player.PlayerState.InTown:
+                {
+                    switch(random)
+                    {
+                        case float i when i > robOddStart && i <= robOddEnd: Debug.Log("Opljackan si"); break;
+                        case float i when i > breakupOddStart && i <= breakupOddEnd && player.HasGf: Debug.Log("Raskinula riba s tobom"); break;
+                        case float i when i > crashOddStart && i <= crashOddEnd: Debug.Log("Slupao se auto u tebe"); break;
+                    }
+                    break;
+                }
+            case Player.PlayerState.AtWork:
+                {
+                    if (random > injuryOddStart && random <= injuryOddEnd) Debug.Log("Povredio si se na poslu");
+                    break;
+                }
+            case Player.PlayerState.Studying:
+                {
+                    if (random > powerOddStart && random <= powerOddEnd) Debug.Log("Nestalo struje dok ucis");
+                    break;
+                }
+        }
+        StartCoroutine("Loop");
     }
-
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine("Loop");
     }
 
     // Update is called once per frame

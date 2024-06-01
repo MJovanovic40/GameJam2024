@@ -59,6 +59,7 @@ public class StudyScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player.State = Player.PlayerState.Studying;
         score.SetText(currentScore.ToString() + "/" + scoreGoal.ToString());
         StartCoroutine("Loop");
         InvokeRepeating("darkenBackground", 0f, 5f);
@@ -82,6 +83,7 @@ public class StudyScript : MonoBehaviour
             {
                 CancelInvoke();
                 Debug.Log("SUCCESS!");
+                player.State = Player.PlayerState.Inactive;
             }
         }
     }
