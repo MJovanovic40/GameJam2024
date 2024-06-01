@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Linq;
 
 public class GenerateText : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class GenerateText : MonoBehaviour
     private string totalInput;
     private string targetText;
     private string targetTextToDisplay;
+
+    private char[] allowedChars = { '\b', ' ', '.', '"', '\'', '(', ')' };
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +37,7 @@ public class GenerateText : MonoBehaviour
     {
         foreach( char c in Input.inputString)
         {
+            if (!char.IsDigit(c) && !char.IsLetter(c) && c != '\b' && !allowedChars.Contains(c)) return;
             HandleTotalInput(c); // Total mora da stoji pre temp jer proverava validnost i govori da li temp moze da se clearuje ako naidje space.
             HandleTempInput(c);
         }
@@ -43,6 +47,7 @@ public class GenerateText : MonoBehaviour
     {
         if (c != '\b')
         {
+            if (c == ' ' && totalInput.Length > 0 && totalInput[totalInput.Length - 1] == ' ') return;
             totalInput += c;
         }
         else if(totalInput.Length > 0 && (totalInput[totalInput.Length - 1] != ' ' || !inputCorrect))
@@ -55,13 +60,15 @@ public class GenerateText : MonoBehaviour
 
     void HandleTempInput(char c)
     {
-        if(c != '\b')
+        if (c == ' ' && !inputCorrect && inputText[inputText.Length - 1] == ' ') return;
+
+        if (c != '\b')
             inputText += c;
 
         if (c == ' ' && inputCorrect)
         {
             inputText = " ";
-        } else if (c == '\b' && inputText.Length > 0)
+        }  else if (c == '\b' && inputText.Length > 0)
         {
             inputText = inputText.Remove(inputText.Length - 1);
         }
