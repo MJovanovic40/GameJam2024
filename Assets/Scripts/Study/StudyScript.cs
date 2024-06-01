@@ -13,9 +13,11 @@ public class StudyScript : MonoBehaviour
 
     private String letterInternal;
 
-    private int scoreGoal = 5;
+    private const int scoreGoal = 5;
 
     private int currentScore = 0;
+
+    private bool firstTime = true;
 
     [SerializeField]
     private SpriteRenderer spriteRenderer;
@@ -29,6 +31,17 @@ public class StudyScript : MonoBehaviour
         player.DecrementFocus(4);
     }
 
+    IEnumerator Loop ()
+    {
+        if (!firstTime) yield return new WaitForSeconds(0.5f);
+        firstTime = false;
+        generateLetter();
+        yield return new WaitForSeconds(2f);
+        TimeOut();
+        yield return new WaitForSeconds(0.5f);
+        StartCoroutine("Loop");
+    }
+
     void generateLetter()
     {
         string chars = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -37,7 +50,7 @@ public class StudyScript : MonoBehaviour
         letterInternal = chars[index].ToString();
     }
 
-    void timeOut()
+    void TimeOut()
     {
         Debug.Log("Incorrect");
         letter.SetText("<color=\"red\">" + letter.text);
@@ -47,8 +60,7 @@ public class StudyScript : MonoBehaviour
     void Start()
     {
         score.SetText(currentScore.ToString() + "/" + scoreGoal.ToString());
-        InvokeRepeating("generateLetter", 0f, 2.5f);
-        InvokeRepeating("timeOut", 2.0f, 2.0f);
+        StartCoroutine("Loop");
         InvokeRepeating("darkenBackground", 0f, 5f);
     }
 
@@ -57,15 +69,14 @@ public class StudyScript : MonoBehaviour
     {
         if (Input.GetKeyDown(letterInternal.ToLower()))
         {
-            CancelInvoke();
             Debug.Log("Correct");
             currentScore++;
             letter.SetText("<color=\"green\">" + letter.text);
             score.SetText(currentScore.ToString() + "/" + scoreGoal.ToString());
+            StopCoroutine("Loop");
             if(currentScore < scoreGoal)
             {
-                InvokeRepeating("generateLetter", 0.5f, 2.5f);
-                InvokeRepeating("timeOut", 2.5f, 2.0f);
+                StartCoroutine("Loop");
             }
             else
             {
