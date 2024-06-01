@@ -5,6 +5,7 @@ using TMPro;
 using System.Linq;
 using System;
 using System.Drawing;
+using JetBrains.Annotations;
 
 public class ExamManager : MonoBehaviour
 {
@@ -39,10 +40,6 @@ public class ExamManager : MonoBehaviour
 
     private Dictionary<char, char> keyboardMap = new Dictionary<char, char>
         {
-            {'a', 'a'}, {'b', 'b'}, {'c', 'c'}, {'d', 'd'}, {'e', 'e'}, {'f', 'f'}, {'g', 'g'},
-            {'h', 'h'}, {'i', 'i'}, {'j', 'j'}, {'k', 'k'}, {'l', 'l'}, {'m', 'm'}, {'n', 'n'},
-            {'o', 'o'}, {'p', 'p'}, {'q', 'q'}, {'r', 'r'}, {'s', 's'}, {'t', 't'}, {'u', 'u'},
-            {'v', 'v'}, {'w', 'w'}, {'x', 'x'}, {'y', 'y'}, {'z', 'z'},
             {'A', 'A'}, {'B', 'B'}, {'C', 'C'}, {'D', 'D'}, {'E', 'E'}, {'F', 'F'}, {'G', 'G'},
             {'H', 'H'}, {'I', 'I'}, {'J', 'J'}, {'K', 'K'}, {'L', 'L'}, {'M', 'M'}, {'N', 'N'},
             {'O', 'O'}, {'P', 'P'}, {'Q', 'Q'}, {'R', 'R'}, {'S', 'S'}, {'T', 'T'}, {'U', 'U'},
@@ -50,16 +47,19 @@ public class ExamManager : MonoBehaviour
             {'0', '0'}, {'1', '1'}, {'2', '2'}, {'3', '3'}, {'4', '4'}, {'5', '5'}, {'6', '6'},
             {'7', '7'}, {'8', '8'}, {'9', '9'},
             {'`', '`'}, {'-', '-'}, {'=', '='}, {'~', '~'},
-            {'!', '!'}, {'@', '@'}, {'#', '#'}, {'$', '$'}, {'%', '%'}, {'^', '^'}, {'&', '&'},
-            {'*', '*'}, {'(', '('}, {')', ')'}, {'_', '_'}, {'+', '+'},
-            {'[', '['}, {']', ']'}, {'\\', '\\'}, {'{', '{'}, {'}', '}'}, {'|', '|'},
-            {';', ';'}, {'\'', '\''}, {':', ':'}, {'"', '"'},
-            {',', ','}, {'.', '.'}, {'/', '/'}, {'<', '<'}, {'>', '>'}, {'?', '?'}, {' ', ' '}
+            {'!', '!'}, {'[', '['}, {']', ']'}, {'\\', '\\'},
+            {';', ';'}, {'\'', '\''},
+            {',', ','}, {'.', '.'}, {'/', '/'}, {'?', '?'}, {' ', ' '}
         };
 
     static System.Random rnd = new System.Random();
 
     private char[] allowedChars = { '\b', ' ', '.', '"', '\'', '(', ')', ',', '?', '!', '$' };
+
+    public ExamManager()
+    {
+        ScrambleMap(0.5f);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -72,6 +72,7 @@ public class ExamManager : MonoBehaviour
         this.inputText = "";
         this.inputCorrect = true;
         this.totalInput = "";
+        //ScrambleMap(0.5f);
     }
 
     // Update is called once per frame
@@ -79,9 +80,15 @@ public class ExamManager : MonoBehaviour
     {
         foreach( char c in Input.inputString)
         {
+            char c1 = c;
             if (!char.IsDigit(c) && !char.IsLetter(c) && c != '\b' && !allowedChars.Contains(c)) return;
-            HandleTotalInput(c); // Total mora da stoji pre temp jer proverava validnost i govori da li temp moze da se clearuje ako naidje space.
-            HandleTempInput(c);
+            if(c != '\b')
+            {
+                c1 = keyboardMap[c.ToString().ToUpper()[0]];
+                if (char.IsLower(c)) c1 = c1.ToString().ToLower()[0];
+            }
+            HandleTotalInput(c1); // Total mora da stoji pre temp jer proverava validnost i govori da li temp moze da se clearuje ako naidje space.
+            HandleTempInput(c1);
         }
     }
 
@@ -159,4 +166,48 @@ public class ExamManager : MonoBehaviour
     {
         get { return keyboardMap; }
     }
+
+    void ScrambleMap(float percentage)
+    {
+        int numberOfKeys = 10;
+
+        int numberOfChanges = Convert.ToInt32(45 * percentage);
+
+        for (int i = 0; i < numberOfChanges; i++)
+        {
+            ChangeRandomButtonMappings();
+        }
+
+    }
+
+    void ChangeRandomButtonMappings()
+    {
+        System.Random rand = new System.Random();
+        char[] keys = keyboardMap.Keys.ToArray();
+
+        char[] lettersAndNumbers = "QWERTYUIOPASDFGHJKLZXCVBNM".ToCharArray();
+
+
+        char option1 = lettersAndNumbers[rand.Next(lettersAndNumbers.Length)];
+        char option2 = lettersAndNumbers[rand.Next(lettersAndNumbers.Length)];
+
+        //while ((!char.IsDigit(option1) && !char.IsLetter(option1)) || (!char.IsDigit(option1) && !char.IsLetter(option2))) {
+        //if(!char.IsDigit(option1) && !char.IsLetter(option1))
+        //{
+        //option1 = keys[rand.Next(keys.Length)];
+        //}
+        //if (!char.IsDigit(option2) && !char.IsLetter(option2))
+        //{
+        // option2 = keys[rand.Next(keys.Length)];
+        //}
+        //}
+
+        if (option1 != keyboardMap[option1] || option2 != keyboardMap[option2]) return;
+
+        keyboardMap[option1] = option2;
+        keyboardMap[option2] = option1;
+
+
+    }   
+
 }
