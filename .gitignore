@@ -4,3 +4,5 @@ Logs/
 UserSettings/
 .vs/
 obj/
+.csproj
+.sln
