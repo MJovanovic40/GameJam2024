@@ -97,6 +97,6 @@ public class Player : MonoBehaviour
     { Money -= amount; }
     public void IncrementFocus(int amount)
     { Focus += amount; }
-    public void DecrementFocus(int ammount)
-    { Focus -= ammount; }
+    public void DecrementFocus(int amount)
+    { Focus -= amount; }
 }
