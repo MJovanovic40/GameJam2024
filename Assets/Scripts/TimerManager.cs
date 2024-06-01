@@ -28,11 +28,12 @@ public class TimerManager : MonoBehaviour
     public float TimeRemaning
     {
         get { return timeRemaning; }
-        set { timeRemaning = value; }
+        private set { timeRemaning = value; }
     }
 
-    public void StartTimer()
+    public void StartTimer(float duration)
     {
+        TimeRemaning = duration;
         isTimeRunning = true;
     }
 
