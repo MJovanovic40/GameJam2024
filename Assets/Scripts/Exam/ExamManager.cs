@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.Linq;
+using System;
+using System.Drawing;
 
 public class GenerateText : MonoBehaviour
 {
@@ -12,20 +14,40 @@ public class GenerateText : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI input;
 
+    [SerializeField]
+    private TextAsset examsAssset;
+
+    [Serializable]
+    public class Exam
+    {
+        public string title;
+        public string story;
+    }
+
+    [Serializable]
+    public class Exams
+    {
+        public Exam[] exams;
+    }
 
     private string inputText;
     private bool inputCorrect;
     private string totalInput;
     private string targetText;
     private string targetTextToDisplay;
+    private Exam[] exams;
 
-    private char[] allowedChars = { '\b', ' ', '.', '"', '\'', '(', ')' };
+    static System.Random rnd = new System.Random();
+
+    private char[] allowedChars = { '\b', ' ', '.', '"', '\'', '(', ')', ',', '?', '!', '$' };
 
     // Start is called before the first frame update
     void Start()
     {
-        this.targetText = "Agreed joy vanity regret met may ladies oppose who. Mile fail as left as hard eyes. Meet made call in mean four year it to. Prospect so branched wondered sensible of up. For gay consisted resolving pronounce sportsman saw discovery not. Northward or household as conveying we earnestly believing. No in up contrasted discretion inhabiting excellence. Entreaties we collecting unpleasant at everything conviction.";
-        this.targetTextToDisplay = "<color=\"green\"></color>Agreed joy vanity regret met may ladies oppose who. Mile fail as left as hard eyes. Meet made call in mean four year it to. Prospect so branched wondered sensible of up. For gay consisted resolving pronounce sportsman saw discovery not. Northward or household as conveying we earnestly believing. No in up contrasted discretion inhabiting excellence. Entreaties we collecting unpleasant at everything conviction.";
+        this.exams = ReadExams();
+
+        this.targetText = exams[rnd.Next(exams.Length)].story;
+        this.targetTextToDisplay = "<color=\"green\"></color>" + this.targetText;
         this.target.SetText(targetTextToDisplay);
         this.inputText = "";
         this.inputCorrect = true;
@@ -78,9 +100,9 @@ public class GenerateText : MonoBehaviour
     void UpdateInputColor()
     {
         if (inputCorrect)
-            input.color = Color.green;
+            input.color = UnityEngine.Color.green;
         else
-            input.color = Color.red;
+            input.color = UnityEngine.Color.red;
     }
 
     void UpdateTotalTextColor()
@@ -107,5 +129,10 @@ public class GenerateText : MonoBehaviour
     int GetOffsetInsertPos(int pos)
     {
         return pos + "<color=\"green\">".Length;
+    }
+
+    Exam[] ReadExams()
+    {
+        return JsonUtility.FromJson<Exams>(examsAssset.text).exams;
     }
 }

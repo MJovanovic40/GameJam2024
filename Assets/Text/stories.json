@@ -1,0 +1,72 @@
+{
+  "exams": [
+    {
+      "title": "The Lost Key",
+      "story": "John had always been careful with his keys, but one day, he found himself locked out of his own house with no one around to help."
+    },
+    {
+      "title": "A Chance Encounter",
+      "story": "On a rainy afternoon, Emma bumped into an old friend she hadn't seen in years, and they decided to catch up over coffee, reminiscing about their shared past."
+    },
+    {
+      "title": "The Secret Garden",
+      "story": "Lucy discovered a hidden garden behind her grandmother's house, filled with exotic plants and flowers she had never seen before, and spent her summer exploring its mysteries."
+    },
+    {
+      "title": "The Unexpected Gift",
+      "story": "On his birthday, Mark received a mysterious package with no return address, containing a rare book he had been searching for his entire life."
+    },
+    {
+      "title": "The Mysterious Signal",
+      "story": "Astronomer Liam detected a strange signal from a distant star, sparking a series of events that would change the course of human history."
+    },
+    {
+      "title": "The Forgotten Letter",
+      "story": "While cleaning out the attic, Sarah found an old letter addressed to her grandmother, revealing a family secret that had been buried for decades."
+    },
+    {
+      "title": "The Lonely Lighthouse",
+      "story": "Every night, the old lighthouse stood alone on the cliff, its light a beacon for ships, yet its keeper had not seen another soul in years."
+    },
+    {
+      "title": "The Hidden Cave",
+      "story": "During a hike, Alex stumbled upon a hidden cave entrance and inside found ancient artifacts that spoke of a civilization long forgotten."
+    },
+    {
+      "title": "The Stolen Painting",
+      "story": "The famous painting disappeared from the museum without a trace, and detective Harris was called to solve the mystery before it was too late."
+    },
+    {
+      "title": "The Last Train",
+      "story": "Mia caught the last train home, not realizing that this journey would lead her to a series of unexpected adventures and new friends."
+    },
+    {
+      "title": "The Time Capsule",
+      "story": "In their backyard, the children unearthed a time capsule from fifty years ago, filled with letters and items from a time long past."
+    },
+    {
+      "title": "The Haunted Mansion",
+      "story": "The old mansion on the hill was said to be haunted, and one night, a group of friends decided to spend the night there to uncover the truth."
+    },
+    {
+      "title": "The Lost City",
+      "story": "Deep in the jungle, explorers found the remains of a lost city, its history and treasures waiting to be discovered by the modern world."
+    },
+    {
+      "title": "The Mysterious Stranger",
+      "story": "A stranger arrived in the small town, and with him came a series of events that would forever change the lives of its residents."
+    },
+    {
+      "title": "The Silver Locket",
+      "story": "Emily found a silver locket at a flea market, and inside was a photo of a woman who looked exactly like her, leading her to investigate its origins."
+    },
+    {
+      "title": "The Secret Passage",
+      "story": "Behind the old bookshelf in the library, David discovered a secret passage that led to a hidden room filled with ancient books and artifacts."
+    },
+    {
+      "title": "The Golden Compass",
+      "story": "Lily inherited a golden compass from her grandfather, and it seemed to have a mind of its own, guiding her to places she never knew existed."
+    }
+  ]
+}
