@@ -955,6 +955,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1465626019}
   input: {fileID: 248733006}
+  examsAssset: {fileID: 4900000, guid: dbb9d168016af844f99bb9920b672726, type: 3}
 --- !u!4 &2081539549
 Transform:
   m_ObjectHideFlags: 0
