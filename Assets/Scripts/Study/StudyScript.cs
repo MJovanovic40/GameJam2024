@@ -77,6 +77,7 @@ public class StudyScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        HandleExit();
         if (Input.GetKeyDown(letterInternal.ToLower()))
         {
             Debug.Log("Correct");
@@ -97,6 +98,14 @@ public class StudyScript : MonoBehaviour
                 player.State = Player.PlayerState.Inactive;
                 player.IncrementPrep();
             }
+        }
+    }
+
+    void HandleExit()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            LevelManager.Instance.LoadScene("WorldScene");
         }
     }
 }
