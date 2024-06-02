@@ -13,6 +13,7 @@ public class StudyScript : MonoBehaviour
 
     private String letterInternal;
 
+    [SerializeField]
     private const int scoreGoal = 5;
 
     private int currentScore = 0;
@@ -84,6 +85,7 @@ public class StudyScript : MonoBehaviour
                 CancelInvoke();
                 Debug.Log("SUCCESS!");
                 player.State = Player.PlayerState.Inactive;
+                player.IncrementPrep();
             }
         }
     }

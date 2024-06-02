@@ -31,7 +31,11 @@ public class Player : MonoBehaviour
     [SerializeField]
     private PlayerState currentState = PlayerState.Inactive;
 
+    [SerializeField]
     private bool hasGf;
+
+    [SerializeField]
+    private int examPrepPercent = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -72,6 +76,14 @@ public class Player : MonoBehaviour
         set { currentState = value; }
     }
 
+    public int ExamPrep
+    {
+        get { return examPrepPercent; }
+        private set
+        {
+            examPrepPercent = value;
+        }
+    }
 
     public int Stamina 
     { 
@@ -97,6 +109,17 @@ public class Player : MonoBehaviour
     }
 
     // State management
+
+    public void IncrementPrep()
+    {
+        ExamPrep += 25;
+    }
+
+    public void ResetPrep()
+    {
+        ExamPrep = 0;
+    }
+
     public void IncrementHealth(int amount) 
     { Health += amount; }
     public void DecrementHealth(int amount)
