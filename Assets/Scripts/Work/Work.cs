@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Work : MonoBehaviour
 {
     [SerializeField]
     private float timeToPrepare = 3f;
+
+    [SerializeField]
+    private Image errorImage;
 
     private string combination = "";
 
@@ -35,6 +39,8 @@ public class Work : MonoBehaviour
             return;
         }
         HandleCombinationInput();
+
+        FadeOutErrorImage();
     }
 
     void HandleCombinationInput()
@@ -56,6 +62,7 @@ public class Work : MonoBehaviour
             combination += "r";
         }
         CheckCombination();
+
     }
 
     void HandleDeliverInput()
@@ -109,6 +116,7 @@ public class Work : MonoBehaviour
     void HandleNonExistentOrder()
     {
         Debug.Log("Order does not exist.");
+        DisplayErrorImage();
     }
 
     void HandleWrongCombination()
@@ -116,6 +124,7 @@ public class Work : MonoBehaviour
         Debug.Log("Wrong combination.");
         Debug.Log(combination);
         combination = "";
+        DisplayErrorImage();
     }
 
     void DeliverOrder(int position)
@@ -139,6 +148,7 @@ public class Work : MonoBehaviour
     {
         Debug.Log("Delivered to wrong position.");
         currentCarriedItem = "";
+        DisplayErrorImage();
     }
 
     void CreateOrder()
@@ -181,5 +191,19 @@ public class Work : MonoBehaviour
             }
         }
         return false;
+    }
+
+    void FadeOutErrorImage()
+    {
+        if(errorImage.color.a > 0)
+        {
+            Debug.Log(errorImage.color.a);
+            errorImage.color = new Color(errorImage.color.r, errorImage.color.g, errorImage.color.b, errorImage.color.a - 0.01f);
+        }
+    }
+
+    void DisplayErrorImage()
+    {
+        errorImage.color = new Color(errorImage.color.r, errorImage.color.g, errorImage.color.b, 0.9f);
     }
 }
