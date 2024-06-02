@@ -3308,12 +3308,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 904238912968704027, guid: 48856e6d7eb6aef4c8bd2efccf8dd00e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 904238912968704027, guid: 48856e6d7eb6aef4c8bd2efccf8dd00e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 904238912968704027, guid: 48856e6d7eb6aef4c8bd2efccf8dd00e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 904238912968704027, guid: 48856e6d7eb6aef4c8bd2efccf8dd00e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -16
+      value: -16.34
       objectReference: {fileID: 0}
     - target: {fileID: 904238912968704027, guid: 48856e6d7eb6aef4c8bd2efccf8dd00e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 1.19
       objectReference: {fileID: 0}
     - target: {fileID: 904238912968704027, guid: 48856e6d7eb6aef4c8bd2efccf8dd00e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3363,6 +3375,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerAllDirections
       objectReference: {fileID: 0}
+    - target: {fileID: 6243545708179754301, guid: 48856e6d7eb6aef4c8bd2efccf8dd00e, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1448785093}
+    - target: {fileID: 7871238620896935884, guid: 48856e6d7eb6aef4c8bd2efccf8dd00e, type: 3}
+      propertyPath: m_Size.x
+      value: 0.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 7871238620896935884, guid: 48856e6d7eb6aef4c8bd2efccf8dd00e, type: 3}
+      propertyPath: m_Size.y
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 7871238620896935884, guid: 48856e6d7eb6aef4c8bd2efccf8dd00e, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 7871238620896935884, guid: 48856e6d7eb6aef4c8bd2efccf8dd00e, type: 3}
+      propertyPath: m_Offset.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8458132502380870533, guid: 48856e6d7eb6aef4c8bd2efccf8dd00e, type: 3}
       propertyPath: m_SortingOrder
       value: 1
@@ -3370,19 +3402,48 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5756919001929158675, guid: 48856e6d7eb6aef4c8bd2efccf8dd00e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1448785093}
   m_SourcePrefab: {fileID: 100100000, guid: 48856e6d7eb6aef4c8bd2efccf8dd00e, type: 3}
 --- !u!114 &1448785091 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5474380395025556362, guid: 48856e6d7eb6aef4c8bd2efccf8dd00e, type: 3}
   m_PrefabInstance: {fileID: 1448785090}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1448785092}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e836dcfd4f4ac164197fd7696f0bc428, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1448785092 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5756919001929158675, guid: 48856e6d7eb6aef4c8bd2efccf8dd00e, type: 3}
+  m_PrefabInstance: {fileID: 1448785090}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1448785093
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1448785092}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1bb402ccc40a7cf42a83483720661098, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &1454933484 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5485394504195309641, guid: e17dfb83433e06844b78d6863085e6d5, type: 3}
