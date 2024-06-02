@@ -7,21 +7,24 @@ public class MainMenuScript : MonoBehaviour
 {
     public void PlayGame(int difficulty)
     {
+        StatsPersistManager.currentState = Player.PlayerState.InTown;
         switch (difficulty)
         {
             case 0: //budzet
                 {
-                    //TODO add difficulty
                     break;
                 }
             case 1: //samofinansiranje
                 {
-                    //TODO: add difficulty
+                    StatsPersistManager.health = 60;
+                    StatsPersistManager.stamina = 60;
+                    StatsPersistManager.money = 0f;
+                    StatsPersistManager.focus = 60;
                     break;
                 }
             case 2: //burzuj
                 {
-                    //TODO: add difficulty
+                    StatsPersistManager.money = 1000000f;
                     break;
                 }
                 SceneManager.LoadSceneAsync("WorldScene");
