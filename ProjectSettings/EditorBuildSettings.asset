@@ -11,4 +11,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WorldScene.unity
     guid: c77d34a076bf333429da3e0576eb3ca8
+  - enabled: 1
+    path: Assets/Scenes/WorkScene.unity
+    guid: 7682a5e4752db9a4c8819fe071fa302e
+  - enabled: 1
+    path: Assets/Scenes/ExamScene.unity
+    guid: be6a7b2cceeadc94f8ebc011e032a4b2
+  - enabled: 1
+    path: Assets/Scenes/StudyScene.unity
+    guid: e66017c1c6bae8440849bc8385c11bdb
   m_configObjects: {}

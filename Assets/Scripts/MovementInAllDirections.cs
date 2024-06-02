@@ -19,6 +19,6 @@ public class MovementInAllDirections : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + movement * moveSpeed * moveSpeed / 2 * Time.fixedDeltaTime);
     }
 }
