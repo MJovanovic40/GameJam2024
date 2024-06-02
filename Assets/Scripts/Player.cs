@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
     private int focus;
 
     [SerializeField]
-    private PlayerState currentState = PlayerState.Inactive;
+    private PlayerState currentState;
 
     [SerializeField]
     private bool hasGf;
@@ -40,12 +40,13 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this.health = 34;
-        this.stamina = 67;
+        this.health = StatsPersistManager.health;
+        this.stamina = StatsPersistManager.stamina;
         this.name = "Cico";
         gameObject.name = "Cico";
-        this.money = 1000.0f;
-        this.focus = 50;
+        this.money = StatsPersistManager.money;
+        this.focus = StatsPersistManager.focus;
+        this.examPrepPercent = StatsPersistManager.examPrepPercent;
     }
 
     // Update is called once per frame

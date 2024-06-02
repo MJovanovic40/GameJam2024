@@ -8,6 +8,7 @@ public class StatsPersistManager : MonoBehaviour
     public static int stamina = 100;
     public static string name = "Cico";
     public static float money = 3000.0f;
+    public static int focus = 100;
     public static Player.PlayerState currentState = Player.PlayerState.Inactive;
     public static bool hasGf = false;
     public static int examPrepPercent = 0;
