@@ -15,9 +15,19 @@ public class ImageHandler : MonoBehaviour
         for (int i = 0; i < healthImages.Length; i++)
         {
             healthImages[i].enabled = false;
-            staminaImages[i].enabled = false;
         }
         healthImages[healthImages.Length - index].enabled = true;
+
+    }
+
+    public void UpdateStaminaBar(int value)
+    {
+        float segmentSize = 100f / staminaImages.Length;
+        int index = Mathf.RoundToInt(value / segmentSize);
+        for (int i = 0; i < staminaImages.Length; i++)
+        {
+            staminaImages[i].enabled = false;
+        }
         staminaImages[staminaImages.Length - index].enabled = true;
 
     }
