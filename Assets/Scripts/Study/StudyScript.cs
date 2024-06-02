@@ -16,6 +16,11 @@ public class StudyScript : MonoBehaviour
     [SerializeField]
     private const int scoreGoal = 5;
 
+    [SerializeField]
+    private AudioClip correct, incorrect;
+
+    private AudioSource audioSrc;
+
     private int currentScore = 0;
 
     private bool firstTime = true;
@@ -55,11 +60,14 @@ public class StudyScript : MonoBehaviour
     {
         Debug.Log("Incorrect");
         letter.SetText("<color=\"red\">" + letter.text);
+        audioSrc.clip = incorrect;
+        audioSrc.Play();
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        audioSrc = GetComponent<AudioSource>();
         player.State = Player.PlayerState.Studying;
         score.SetText(currentScore.ToString() + "/" + scoreGoal.ToString());
         StartCoroutine("Loop");
@@ -72,6 +80,8 @@ public class StudyScript : MonoBehaviour
         if (Input.GetKeyDown(letterInternal.ToLower()))
         {
             Debug.Log("Correct");
+            audioSrc.clip = correct;
+            audioSrc.Play();
             currentScore++;
             letter.SetText("<color=\"green\">" + letter.text);
             score.SetText(currentScore.ToString() + "/" + scoreGoal.ToString());
