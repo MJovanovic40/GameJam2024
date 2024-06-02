@@ -16,7 +16,15 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        horizontal = Input.GetAxisRaw("Horizontal");
+        horizontal = 0f;
+        if (Input.GetKey(KeyCode.A))
+        {
+            horizontal = -1f;
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            horizontal = 1f;
+        }
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
