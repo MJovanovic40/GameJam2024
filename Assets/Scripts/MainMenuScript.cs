@@ -27,8 +27,11 @@ public class MainMenuScript : MonoBehaviour
                     StatsPersistManager.money = 1000000f;
                     break;
                 }
-                SceneManager.LoadSceneAsync("WorldScene");
+
         }
+        Debug.Log("dosao");
+        SceneManager.LoadSceneAsync("WorldScene");
+
     }
 
     public void QuitGame()
