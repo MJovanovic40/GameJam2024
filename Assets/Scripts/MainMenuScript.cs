@@ -30,7 +30,7 @@ public class MainMenuScript : MonoBehaviour
 
         }
         Debug.Log("dosao");
-        SceneManager.LoadSceneAsync("WorldScene");
+        LevelManager.Instance.LoadScene("WorldScene");
 
     }
 

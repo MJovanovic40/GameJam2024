@@ -21,6 +21,9 @@ public class ExamManager : MonoBehaviour
     [SerializeField]
     private AudioClip click;
 
+    [SerializeField]
+    private GameObject gameOver;
+
     [Serializable]
     public class Exam
     {
@@ -67,6 +70,12 @@ public class ExamManager : MonoBehaviour
         ScrambleMap(0.5f);
     }
 
+    IEnumerator failer()
+    {
+        yield return new WaitForSeconds(60f);
+        ExamFailed();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -82,6 +91,7 @@ public class ExamManager : MonoBehaviour
         this.inputText = "";
         this.inputCorrect = true;
         this.totalInput = "";
+        StartCoroutine("failer");
     }
 
     // Update is called once per frame
@@ -217,11 +227,14 @@ public class ExamManager : MonoBehaviour
     void ExamSuccessful()
     {
         Debug.Log("Exam successful.");
+        LevelManager.Instance.LoadScene("WorldScene");
     }
 
     void ExamFailed()
     {
-
+        Debug.Log("Exam failed.");
+        gameOver.SetActive(true);
+        audioSrc.Stop();
     }
 
 }
