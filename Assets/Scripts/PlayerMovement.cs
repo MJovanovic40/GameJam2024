@@ -13,6 +13,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
 
+    private Animator animator;
+
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -25,6 +32,8 @@ public class PlayerMovement : MonoBehaviour
         {
             horizontal = 1f;
         }
+
+        animator.SetFloat("speed", Mathf.Abs(horizontal));
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
