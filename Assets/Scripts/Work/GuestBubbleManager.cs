@@ -66,7 +66,7 @@ public class GuestBubbleManager : MonoBehaviour
                     pancakes.GetComponent<SpriteRenderer>().enabled = true;
                     break;
                 case "milkshake":
-                    milkshake.SetActive(true);
+                    milkshake.GetComponent<SpriteRenderer>().enabled = true;
                     break;
             }
         }

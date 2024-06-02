@@ -16,13 +16,16 @@ public class Work : MonoBehaviour
     [SerializeField]
     private AudioClip orderSucc;
 
+    [SerializeField]
+    private Player player;
+
     private string combination = "";
 
     private AudioSource audioSrc;
 
     private Dictionary<string, string> recipes = new Dictionary<string, string>
     {
-        {"rdllu", "burger"}, {"rdurr", "donut"}, {"ulldl", "cake"}, {"drrru", "cupcake"}, {"ururl", "pancakes"}, {"ruldl", "milkshake"}
+        {"rdllu", "burger"}, {"rdurr", "donut"}, {"ulldl", "cake"}, /*{"drrru", "cupcake"},*/ {"ururl", "pancakes"}, {"ruldl", "milkshake"}
     };
 
     private Dictionary<int, string> orders = new Dictionary<int, string>();
@@ -40,6 +43,7 @@ public class Work : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        HandleExit();
         if(currentCarriedItem.Length > 0)
         {
             HandleDeliverInput();
@@ -155,6 +159,7 @@ public class Work : MonoBehaviour
         orders.Remove(position);
         audioSrc.clip = orderSucc;
         audioSrc.Play();
+        AddMoneyToPlayer();
     }
     void HandleWronglyDeliveredOrder()
     {
@@ -185,6 +190,15 @@ public class Work : MonoBehaviour
     public string CurrentCarriedItem
     {
         get { return currentCarriedItem; }
+    }
+
+    void AddMoneyToPlayer()
+    {
+        System.Random rand = new System.Random();
+        int amount = rand.Next(500);
+
+        player.IncrementMoney(amount);
+        player.DecrementStamina(rand.Next(7));
     }
 
     public bool CheckCombinationForRecipe(string combination, string recipe)
@@ -235,5 +249,13 @@ public class Work : MonoBehaviour
     public Dictionary<int, GuestController> Seats
     {
         get { return seats; }
+    }
+
+    void HandleExit()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            LevelManager.Instance.LoadScene("WorldScene");
+        }
     }
 }

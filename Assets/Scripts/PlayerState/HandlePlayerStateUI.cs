@@ -16,8 +16,9 @@ public class HandlePlayerStateUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(player.Stamina);
         playerStateHandler.UpdateHealthBar(player.Health);
-        playerStateHandler.UpdateHealthBar(player.Stamina);
+        playerStateHandler.UpdateStaminaBar(player.Stamina);
         playerStateHandler.UpdateFocusBar(player.Focus);
     }
 }
