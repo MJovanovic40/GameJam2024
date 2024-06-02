@@ -97,6 +97,7 @@ public class ExamManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        HandleExit();
         foreach( char c in Input.inputString)
         {
             audioSrc.Play();
@@ -235,6 +236,14 @@ public class ExamManager : MonoBehaviour
         Debug.Log("Exam failed.");
         gameOver.SetActive(true);
         audioSrc.Stop();
+    }
+
+    void HandleExit()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            LevelManager.Instance.LoadScene("WorldScene");
+        }
     }
 
 }
