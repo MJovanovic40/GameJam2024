@@ -38,7 +38,7 @@ public class PlayerBubbleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(player.transform.position.x - 0.5f, player.transform.position.y + 3.6f, player.transform.position.z);
+        transform.position = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
         CheckOrderRender();
     }
 
