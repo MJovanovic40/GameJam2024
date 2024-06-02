@@ -81,7 +81,7 @@ public class Player : MonoBehaviour
         get { return examPrepPercent; }
         private set
         {
-            examPrepPercent = value;
+            examPrepPercent = Mathf.Clamp(value, 0, 100);
         }
     }
 
@@ -124,7 +124,7 @@ public class Player : MonoBehaviour
     { Health += amount; }
     public void DecrementHealth(int amount)
     {
-        if (Health - amount < 100)
+        if (Health - amount < 0)
         {
             // Handle Player death
             return;
