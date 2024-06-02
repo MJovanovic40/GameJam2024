@@ -13,7 +13,12 @@ public class Work : MonoBehaviour
     [SerializeField]
     private Image errorImage;
 
+    [SerializeField]
+    private AudioClip orderSucc;
+
     private string combination = "";
+
+    private AudioSource audioSrc;
 
     private Dictionary<string, string> recipes = new Dictionary<string, string>
     {
@@ -28,6 +33,7 @@ public class Work : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioSrc = GetComponent<AudioSource>();
         //InvokeRepeating("CreateOrder", 0f, 10f);
     }
 
@@ -147,6 +153,8 @@ public class Work : MonoBehaviour
         seats[position].FinishOrder();
         seats.Remove(position);
         orders.Remove(position);
+        audioSrc.clip = orderSucc;
+        audioSrc.Play();
     }
     void HandleWronglyDeliveredOrder()
     {

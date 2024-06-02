@@ -15,12 +15,14 @@ public class KeyManager : MonoBehaviour
     [SerializeField]
     private KeyCode keyCode;
 
+
     [SerializeField]
     private GameObject examManager;
 
     // Start is called before the first frame update
     void Start()
     {
+
         animator = gameObject.GetComponent<Animator>();
         text = GetComponentInChildren<TextMeshProUGUI>();
         string code = keyCode.ToString().Replace("Alpha", "").Trim();
@@ -40,7 +42,7 @@ public class KeyManager : MonoBehaviour
     {
         if (Input.GetKeyDown(keyCode))
         {
-            animator.Play("New State", -1, 0f); ;
+            animator.Play("New State", -1, 0f);
         }
     }
 

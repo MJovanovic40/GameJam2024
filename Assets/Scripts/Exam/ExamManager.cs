@@ -18,6 +18,9 @@ public class ExamManager : MonoBehaviour
     [SerializeField]
     private TextAsset examsAssset;
 
+    [SerializeField]
+    private AudioClip click;
+
     [Serializable]
     public class Exam
     {
@@ -37,6 +40,9 @@ public class ExamManager : MonoBehaviour
     private string targetText;
     private string targetTextToDisplay;
     private Exam[] exams;
+
+    private AudioSource audioSrc;
+
 
     private Dictionary<char, char> keyboardMap = new Dictionary<char, char>
         {
@@ -64,6 +70,10 @@ public class ExamManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioSrc = GetComponent<AudioSource>();
+        audioSrc.clip = click;
+
+
         this.exams = ReadExams();
 
         this.targetText = exams[rnd.Next(exams.Length)].story;
@@ -79,6 +89,8 @@ public class ExamManager : MonoBehaviour
     {
         foreach( char c in Input.inputString)
         {
+            audioSrc.Play();
+
             char c1 = c;
             if (!char.IsDigit(c) && !char.IsLetter(c) && c != '\b' && !allowedChars.Contains(c)) return;
             if(c != '\b')
