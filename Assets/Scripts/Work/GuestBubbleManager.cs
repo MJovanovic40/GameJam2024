@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerBubbleManager : MonoBehaviour
+public class GuestBubbleManager : MonoBehaviour
 {
     [SerializeField]
     private GameObject player;
 
     [SerializeField]
-    private Work work;
+    private GuestController guestController;
 
     [SerializeField]
     private GameObject burger;
@@ -32,29 +33,22 @@ public class PlayerBubbleManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
+        transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 3, player.transform.position.z);
         CheckOrderRender();
     }
 
     void CheckOrderRender()
     {
-        burger.GetComponent<SpriteRenderer>().enabled = false;
-        donut.GetComponent<SpriteRenderer>().enabled = false;
-        cake.GetComponent<SpriteRenderer>().enabled = false;
-        cupcake.GetComponent<SpriteRenderer>().enabled = false;
-        pancakes.GetComponent<SpriteRenderer>().enabled = false;
-        milkshake.GetComponent<SpriteRenderer>().enabled = false;
-
-        if (work.CurrentCarriedItem.Length > 0)
+        if (guestController.Order.Length > 0)
         {
             GetComponent<SpriteRenderer>().enabled = true;
-            switch (work.CurrentCarriedItem) 
+            switch (guestController.Order)
             {
                 case "burger":
                     burger.GetComponent<SpriteRenderer>().enabled = true;
@@ -72,16 +66,19 @@ public class PlayerBubbleManager : MonoBehaviour
                     pancakes.GetComponent<SpriteRenderer>().enabled = true;
                     break;
                 case "milkshake":
-                    milkshake.GetComponent<SpriteRenderer>().enabled = true;
+                    milkshake.SetActive(true);
                     break;
             }
-
-
-        } else
+        }
+        else
         {
             GetComponent<SpriteRenderer>().enabled = false;
+            burger.GetComponent<SpriteRenderer>().enabled = false;
+            donut.GetComponent<SpriteRenderer>().enabled = false;
+            cake.GetComponent<SpriteRenderer>().enabled = false;
+            cupcake.GetComponent<SpriteRenderer>().enabled = false;
+            pancakes.GetComponent<SpriteRenderer>().enabled = false;
+            milkshake.GetComponent<SpriteRenderer>().enabled = false;
         }
     }
-    
-
 }

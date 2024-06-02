@@ -21,13 +21,14 @@ public class Work : MonoBehaviour
     };
 
     private Dictionary<int, string> orders = new Dictionary<int, string>();
+    private Dictionary<int, GuestController> seats = new Dictionary<int, GuestController>();
 
     private string currentCarriedItem = "";
     
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("CreateOrder", 0f, 10f);
+        //InvokeRepeating("CreateOrder", 0f, 10f);
     }
 
     // Update is called once per frame
@@ -136,13 +137,16 @@ public class Work : MonoBehaviour
             return;
         }
         Debug.Log("Successfully Delivered to position: " + position);
-        HandleSuccessfullyDeliveredOrder();
+        HandleSuccessfullyDeliveredOrder(position);
     }
 
-    void HandleSuccessfullyDeliveredOrder()
+    void HandleSuccessfullyDeliveredOrder(int position)
     {
         Debug.Log("Order delivered successfully.");
         currentCarriedItem = "";
+        seats[position].FinishOrder();
+        seats.Remove(position);
+        orders.Remove(position);
     }
     void HandleWronglyDeliveredOrder()
     {
@@ -151,22 +155,18 @@ public class Work : MonoBehaviour
         DisplayErrorImage();
     }
 
-    void CreateOrder()
+    public string CreateOrder(int pos, GuestController reference)
     {
-        if (orders.Count == 5) return; // Restaurant is full
+        if (orders.Count == 5 || orders.ContainsKey(pos) || pos > 5 || pos < 0) return ""; // Restaurant is full
 
         string[] recipesList = recipes.Values.ToArray();
         System.Random rand = new System.Random();
 
         string choice = recipesList[rand.Next(recipesList.Length)];
-
-        for (int i = 1; i <= 5; i++)
-        {
-            if (orders.ContainsKey(i)) continue;
-            orders.Add(i, choice);
-            Debug.Log("Created order: " + choice);
-            return;
-        }
+        orders.Add(pos, choice);
+        seats.Add(pos, reference);
+        Debug.Log("Created order: " + choice);
+        return choice;
     }
 
     public string Combination
@@ -205,5 +205,27 @@ public class Work : MonoBehaviour
     void DisplayErrorImage()
     {
         errorImage.color = new Color(errorImage.color.r, errorImage.color.g, errorImage.color.b, 0.9f);
+    }
+
+    public int GetFirstOpenPosition()
+    {
+        for(int i = 1; i <= 5; i++)
+        {
+            if(!orders.ContainsKey(i))
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public string GetOrderForPosition(int pos)
+    {
+        return orders.GetValueOrDefault(pos, "");
+    }
+
+    public Dictionary<int, GuestController> Seats
+    {
+        get { return seats; }
     }
 }
