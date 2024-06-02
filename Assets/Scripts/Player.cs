@@ -40,12 +40,12 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this.health = 100;
-        this.stamina = 100;
+        this.health = 34;
+        this.stamina = 67;
         this.name = "Cico";
         gameObject.name = "Cico";
         this.money = 1000.0f;
-        this.focus = 100;
+        this.focus = 50;
     }
 
     // Update is called once per frame
