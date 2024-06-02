@@ -72,7 +72,6 @@ public class ExamManager : MonoBehaviour
         this.inputText = "";
         this.inputCorrect = true;
         this.totalInput = "";
-        //ScrambleMap(0.5f);
     }
 
     // Update is called once per frame
@@ -151,6 +150,12 @@ public class ExamManager : MonoBehaviour
             this.inputCorrect = false;
         }
         UpdateInputColor();
+
+        if(targetText.Equals(totalInput))
+        {
+            ExamSuccessful();
+            //Stop timer
+        }
     }
 
     int GetOffsetInsertPos(int pos)
@@ -191,23 +196,20 @@ public class ExamManager : MonoBehaviour
         char option1 = lettersAndNumbers[rand.Next(lettersAndNumbers.Length)];
         char option2 = lettersAndNumbers[rand.Next(lettersAndNumbers.Length)];
 
-        //while ((!char.IsDigit(option1) && !char.IsLetter(option1)) || (!char.IsDigit(option1) && !char.IsLetter(option2))) {
-        //if(!char.IsDigit(option1) && !char.IsLetter(option1))
-        //{
-        //option1 = keys[rand.Next(keys.Length)];
-        //}
-        //if (!char.IsDigit(option2) && !char.IsLetter(option2))
-        //{
-        // option2 = keys[rand.Next(keys.Length)];
-        //}
-        //}
-
         if (option1 != keyboardMap[option1] || option2 != keyboardMap[option2]) return;
 
         keyboardMap[option1] = option2;
         keyboardMap[option2] = option1;
-
-
     }   
+
+    void ExamSuccessful()
+    {
+        Debug.Log("Exam successful.");
+    }
+
+    void ExamFailed()
+    {
+
+    }
 
 }
