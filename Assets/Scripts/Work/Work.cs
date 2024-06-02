@@ -164,6 +164,11 @@ public class Work : MonoBehaviour
         get { return combination; }
     }
 
+    public string CurrentCarriedItem
+    {
+        get { return currentCarriedItem; }
+    }
+
     public bool CheckCombinationForRecipe(string combination, string recipe)
     {
         string[] keys = recipes.Keys.ToArray();
